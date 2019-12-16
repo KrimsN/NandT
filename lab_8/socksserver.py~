@@ -1,0 +1,20 @@
+from socketserver import ThreadingMixIn, TCPServer, StreamRequestHandler
+
+class ThreadingTCPServer(ThreadingMixIn, TCPServer):
+    pass
+
+
+class SocksProxy(StreamRequestHandler):
+    def handle(self):
+        # логика
+        pass
+
+
+
+def main():
+    with ThreadingTCPServer(('localhost', 1080), SocksProxy) as s:
+        s.serve_forever()
+
+
+if __name__ == '__main__':
+    main()
